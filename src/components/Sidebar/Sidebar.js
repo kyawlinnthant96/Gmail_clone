@@ -4,7 +4,6 @@ import React from "react";
 import "./Sidebar.css";
 import { Button, IconButton } from "@mui/material";
 import {
-  AccessTime,
   Add,
   Duo,
   ExpandMore,
@@ -18,11 +17,18 @@ import {
 } from "@mui/icons-material";
 // components
 import SidebarOption from "../SidebarOption/SidebarOption";
+import { useDispatch } from "react-redux";
+import { openSendMessage } from "../../features/mailSlice";
 
 function Sidebar() {
+  const dispatch = useDispatch();
   return (
     <div className="sidebar">
-      <Button className="sidebar__compose" startIcon={<Add fontSize="large" />}>
+      <Button
+        className="sidebar__compose"
+        onClick={() => dispatch(openSendMessage())}
+        startIcon={<Add fontSize="large" />}
+      >
         Compose
       </Button>
       <SidebarOption Icon={Inbox} title="inbox" number={54} selected={true} />
